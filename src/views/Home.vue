@@ -1,55 +1,74 @@
 <template>
-  <div class="l-home">
-    <lBanner />
-    <section class="content">
-      <el-row type="flex" justify="center">
-        <el-col :sm="12" :xs="24">
-          <el-card shadow="hover" class="l-card" v-for="i in 10" :key="i">
-            <div slot="header">
-              <span>卡片{{i}}</span>
-            </div>
-            <div class="brief">
-              你可以引入整个 Element，或是根据需要仅引入部分组件。我们先介绍如何引入完整的 Element。
-              你可以引入整个 Element，或是根据需要仅引入部分组件。我们先介绍如何引入完整的 Element。
-              你可以引入整个 Element，或是根据需要仅引入部分组件。我们先介绍如何引入完整的 Element。
-            </div>
-          </el-card>
-        </el-col>
-      </el-row>
-    </section>
-  </div>
+  <section class="l-home-page">
+    <div class="container">
+      <transition appear appear-active-class="animated pulse faster">
+        <l-author-box></l-author-box>
+      </transition>
+    </div>
+    <div class="container">
+      <transition-group enter-active-class="animated pulse fadeInUp" leave-active-class="animated fadeOutDown faster">
+        <pulse-loader v-if="loading" key="loading" class="loading-style" color="#409eff" :loading="loading" :size="5"
+          margin="5px"></pulse-loader>
+        <div v-else key="loaded">
+          <l-article-item :article="item" class="item" v-for="item in articleList" :key="item.slug"></l-article-item>
+        </div>
+      </transition-group>
+    </div>
+  </section>
 </template>
 
 <script>
-  // @ is an alias to /src
-  import lBanner from '@/components/banner.vue'
+  import {
+    getArticles
+  } from "@/api/service";
+  import lArticleItem from '@/components/Article/ArticleItem.vue';
+  import lAuthorBox from '@/components/authorBox.vue';
 
   export default {
-    name: 'home',
+    name: "l-home-page",
     components: {
-      lBanner
-    }
-  }
+      lArticleItem,
+      lAuthorBox
+    },
+    computed: {
+      articleList() { //时间反序
+        var list = JSON.parse(JSON.stringify(this.articles))
+        return list.sort((a, b) => Date.parse(b.created) - Date.parse(a.created))
+      },
+    },
+    data() {
+      return {
+        articles: [],
+        loading: true
+      }
+    },
+    created() {
+      this.getData()
+    },
+    methods: {
+      async getData() {
+        try {
+          var res = await getArticles({
+            page: 1,
+            page_size: 10
+          })
+          this.articles = res.data.data
+          this.loading = false
+        } catch (error) {
+          console.error(error);
+        }
+
+      },
+    },
+  };
 </script>
 <style lang="scss">
-  .l-home {
+  .l-home-page {
     min-height: 100%;
 
-    .content {
-      padding: 100px 15px;
-
-      .l-card+.l-card {
-        margin-top: 30px;
-      }
-
-      .l-card:hover {
-        transform: translateY(-15px)
-      }
-      .l-card{
-        .brief{
-          text-align: left;
-        }
-      }
+    .item {
+      padding: 15px 0;
     }
+
   }
 </style>
