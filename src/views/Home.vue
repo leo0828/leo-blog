@@ -6,13 +6,13 @@
       </transition>
     </div>
     <div class="container">
-      <transition-group enter-active-class="animated pulse fadeInUp" leave-active-class="animated fadeOutDown faster">
+      <transition mode="out-in" enter-active-class="animated fadeIn faster" leave-active-class="animated fadeOut faster">
         <pulse-loader v-if="loading" key="loading" class="loading-style" color="#409eff" :loading="loading" :size="5"
           margin="5px"></pulse-loader>
         <div v-else key="loaded">
-          <l-article-item :article="item" class="item" v-for="item in articleList" :key="item.slug"></l-article-item>
+          <l-article-item :article="item" class="item" v-for="item in articles" :key="item.slug"></l-article-item>
         </div>
-      </transition-group>
+      </transition>
     </div>
   </section>
 </template>
@@ -30,12 +30,12 @@
       lArticleItem,
       lAuthorBox
     },
-    computed: {
-      articleList() { //时间反序
-        var list = JSON.parse(JSON.stringify(this.articles))
-        return list.sort((a, b) => Date.parse(b.created) - Date.parse(a.created))
-      },
-    },
+    // computed: {
+    //   articleList() { //时间反序
+    //     var list = JSON.parse(JSON.stringify(this.articles))
+    //     return list.sort((a, b) => Date.parse(b.created) - Date.parse(a.created))
+    //   },
+    // },
     data() {
       return {
         articles: [],
@@ -50,12 +50,14 @@
         try {
           var res = await getArticles({
             page: 1,
-            page_size: 10
+            page_size: 10,
           })
           this.articles = res.data.data
           this.loading = false
         } catch (error) {
           console.error(error);
+          this.$message.error('获取文章列表失败')
+
         }
 
       },

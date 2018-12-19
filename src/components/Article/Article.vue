@@ -4,7 +4,7 @@
             <h1 class="title">{{article.title}}</h1>
             <div class="date">{{$tool.fromNow(article.created)}}</div>
         </div>
-        <div class="content" v-html="article.body"></div>
+        <div class="content" v-html="article.body" v-hljs></div>
     </div>
 </template>
 <script>
@@ -49,6 +49,10 @@
             line-height: 1.8em;
             color: $main-text-color;
 
+            code{
+                letter-spacing: initial;
+            }
+
             img {
                 width: 100%;
                 // max-width: 100%;
@@ -70,7 +74,7 @@
 
             p,
             .image {
-                margin: 0.5em 0 1em 0;
+                margin: 1em 0;
             }
 
             .text {

@@ -8,8 +8,12 @@ import '@/plugins/butter'
 import '@/plugins/dayjs'
 //vue-spinner配置文件
 import '@/plugins/vue-spinner'
+//element-ui配置文件
+import '@/plugins/element-ui'
 //全局工具文件
 import  '@/utils/tool'
+//全局指令
+import '@/directives/v-highlight'
 
 Vue.config.productionTip = false
 

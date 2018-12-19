@@ -1,10 +1,15 @@
 <template>
   <section class="l-article-page">
-    <transition enter-active-class="animated fadeIn faster">
-      <pulse-loader class="loading-style" key="loading" v-if="loading" color="#409eff" :loading="loading" :size="5" margin="5px"></pulse-loader>
+    <transition enter-active-class="animated fadeIn faster" enter-leave-class="animated fadeOut faster">
+      <pulse-loader class="loading-style" key="loading" v-if="loading" color="#409eff" :loading="loading" :size="5"
+        margin="5px"></pulse-loader>
       <div key="loaded" class="container" v-else="loading">
         <router-link class="link back-link" to="/">Back</router-link>
         <l-article :article="article.data"></l-article>
+        <div class="l-pagination">
+          <el-button @click="prev" :loading="prevLoading" v-if="prevPost" plain>上一篇</el-button>
+          <el-button @click="next" :loading="nextLoading" v-if="nextPost" plain>下一篇</el-button>
+        </div>
       </div>
     </transition>
   </section>
@@ -19,12 +24,12 @@
     name: 'l-article-page',
     watch: {
       $route(to, from) {
-        this.getData()
+        this.getData(this.slug)
       }
     },
     props: {
-      id: {
-        default: 1
+      slug: {
+        default: 'example-post'
       }
     },
     components: {
@@ -33,28 +38,49 @@
     data() {
       return {
         loading: true,
-        article: {}
+        prevLoading: false,
+        nextLoading: false,
+        article: {},
+        nextPost: {},
+        prevPost: {}
       }
     },
     created() {
-      this.getData()
+      this.getData(this.slug)
     },
     methods: {
-      go() {
+      prev() {
+        this.loading = true
+        this.prevLoading = true
         this.$router.push({
           name: 'article',
           params: {
-            id: 2
+            slug: this.prevPost.slug
           }
         })
       },
-      async getData() {
+      next() {
+        this.loading = true
+        this.nextLoading = true
+        this.$router.push({
+          name: 'article',
+          params: {
+            slug: this.nextPost.slug
+          }
+        })
+      },
+      async getData(slug) {
         try {
-          var res = await getArticle(this.id) || this.$router.push('/')
+          var res = await getArticle(slug) || this.$router.push('/')
           this.article = res.data
+          this.prevPost = res.data.meta.previous_post
+          this.nextPost = res.data.meta.next_post
           this.loading = false
+          this.prevLoading = false
+          this.nextLoading = false
         } catch (error) {
           console.error(error);
+          this.$message.error('获取文章信息失败')
         }
       },
     }
@@ -78,6 +104,12 @@
       display: inline-block;
       position: relative;
       margin-right: 8px;
+    }
+
+    .l-pagination {
+      display: flex;
+      padding-top: 30px;
+      justify-content: space-between;
     }
   }
 </style>

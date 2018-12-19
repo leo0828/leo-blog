@@ -10,6 +10,8 @@
     "@saeris/vue-spinners": "^1.0.8",
     "buttercms": "^1.1.2",
     "dayjs": "^1.7.8",
+    "element-ui": "^2.4.11",
+    "highlight.js": "^9.13.1",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
@@ -17,6 +19,7 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.1",
     "@vue/cli-service": "^3.0.1",
+    "babel-plugin-component": "^1.1.1",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.5.17"

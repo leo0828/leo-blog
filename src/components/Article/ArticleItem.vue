@@ -2,7 +2,7 @@
     <div class="l-article-item">
         <div class="title">
             <h2>
-                <router-link class="link" :to="{name:'article',params:{id:article.slug}}">{{article.title}}</router-link>
+                <router-link class="link" :to="{name:'article',params:{slug:article.slug}}">{{article.title}}</router-link>
             </h2>
         </div>
         <div class="date">
@@ -29,7 +29,7 @@
                 this.$router.push({
                     name: 'article',
                     params: {
-                        id: slug
+                        slug: slug
                     }
                 })
             }
