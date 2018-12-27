@@ -24,7 +24,8 @@
   @import url('./styles/animate.min.css');
 
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    // font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     display: flex;
@@ -32,15 +33,6 @@
     justify-content: space-between;
     color: #2c3e50;
     min-height: 100%;
-    letter-spacing: 1.1px;
-
-    .menu {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 0;
-
-    }
 
     footer {
       display: flex;

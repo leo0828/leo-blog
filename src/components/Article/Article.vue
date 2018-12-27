@@ -38,11 +38,6 @@
                 margin: 5px 0;
             }
 
-            .title {
-                font-size: 36px;
-                font-weight: 500;
-                text-transform: uppercase;
-            }
         }
 
         .content {

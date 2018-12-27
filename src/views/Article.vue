@@ -7,8 +7,8 @@
         <router-link class="link back-link" to="/">Back</router-link>
         <l-article :article="article.data"></l-article>
         <div class="l-pagination">
-          <el-button @click="prev" :loading="prevLoading" v-if="prevPost" plain>上一篇</el-button>
-          <el-button @click="next" :loading="nextLoading" v-if="nextPost" plain>下一篇</el-button>
+          <el-button @click="prev" :loading="prevLoading" icon="el-icon-arrow-left" v-if="prevPost" plain>Prev</el-button>
+          <el-button @click="next" :loading="nextLoading" v-if="nextPost" plain>Next<i class="el-icon-arrow-right el-icon--right"></i></el-button>
         </div>
       </div>
     </transition>
