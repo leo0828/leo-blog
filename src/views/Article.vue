@@ -4,11 +4,11 @@
       <pulse-loader class="loading-style" key="loading" v-if="loading" color="#409eff" :loading="loading" :size="5"
         margin="5px"></pulse-loader>
       <div key="loaded" class="container" v-else="loading">
-        <router-link class="link back-link" to="/">Back</router-link>
+        <router-link class="link back-btn" to="/"><i class="el-icon-back el-icon--left"></i>Back</router-link>
         <l-article :article="article.data"></l-article>
         <div class="l-pagination">
-          <el-button @click="prev" :loading="prevLoading" icon="el-icon-arrow-left" v-if="prevPost" plain>Prev</el-button>
-          <el-button @click="next" :loading="nextLoading" v-if="nextPost" plain>Next<i class="el-icon-arrow-right el-icon--right"></i></el-button>
+          <el-button class="nav-btn" @click="prev" v-if="prevPost" plain><i class="el-icon-arrow-left el-icon--left"></i>Prev</el-button>
+          <el-button class="nav-btn" @click="next" v-if="nextPost" plain>Next<i class="el-icon-arrow-right el-icon--right"></i></el-button>
         </div>
       </div>
     </transition>
@@ -33,7 +33,7 @@
       }
     },
     components: {
-      lArticle
+      lArticle,
     },
     data() {
       return {
@@ -51,7 +51,6 @@
     methods: {
       prev() {
         this.loading = true
-        this.prevLoading = true
         this.$router.push({
           name: 'article',
           params: {
@@ -61,7 +60,6 @@
       },
       next() {
         this.loading = true
-        this.nextLoading = true
         this.$router.push({
           name: 'article',
           params: {
@@ -76,8 +74,6 @@
           this.prevPost = res.data.meta.previous_post
           this.nextPost = res.data.meta.next_post
           this.loading = false
-          this.prevLoading = false
-          this.nextLoading = false
         } catch (error) {
           console.error(error);
           this.$message.error('获取文章信息失败')
@@ -94,22 +90,31 @@
     align-items: center;
     justify-content: center;
 
-    .back-link {
-      display: block;
-      color: $text-color;
+    //highlight.js reset style
+    .hljs {
+      font-size: 16px;
     }
 
-    .back-link:before {
-      content: "←";
+    .back-btn {
       display: inline-block;
-      position: relative;
-      margin-right: 8px;
     }
 
     .l-pagination {
       display: flex;
       padding-top: 30px;
       justify-content: space-between;
+    }
+
+    //prev & next btn style
+    .nav-btn {
+      border-radius: 0;
+      transition: all 0.5s ease;
+
+      &:hover,
+      &:focus,
+      &:active {
+        border-radius: 30px;
+      }
     }
   }
 </style>

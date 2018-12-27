@@ -27,7 +27,7 @@
 <style lang="scss">
     .l-article {
         padding-bottom: 30px;
-        border-bottom: 1px solid #e6e6e6;
+        border-bottom: 0.5px solid #e6e6e6;
 
         .header {
             padding: 30px 0;
