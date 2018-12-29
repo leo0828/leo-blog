@@ -2,7 +2,10 @@
     <div class="l-author-box">
         <img class="avatar" src="../assets/Leo.jpeg" alt="">
         <h1 class="name">Leo</h1>
-        <p class="bref">一个前端魔法师</p>
+        <p class="bref">
+            <a class="link" href="https://github.com/leo0828/" target="_blank"><i class="iconfont icon-github"></i></a>
+            一个前端魔法师
+        </p>
     </div>
 </template>
 <style lang="scss">
@@ -39,6 +42,13 @@
             align-items: center;
             font-size: 18px;
             color: $text-color;
+            .link{
+                margin-right: 10px;
+            }
+
+            .icon-github {
+                font-size: 20px;
+            }
         }
     }
 </style>

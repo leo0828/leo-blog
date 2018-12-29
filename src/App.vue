@@ -22,6 +22,7 @@
 
 <style lang="scss">
   @import url('./styles/animate.min.css');
+  @import url('./assets/icon/iconfont.css');
 
   #app {
     // font-family: 'Avenir', Helvetica, Arial, sans-serif;
