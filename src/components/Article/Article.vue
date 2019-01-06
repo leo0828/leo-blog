@@ -4,7 +4,7 @@
             <h1 class="title">{{article.title}}</h1>
             <div class="date">{{$tool.fromNow(article.created)}}</div>
         </div>
-        <div class="content" v-html="article.body" v-hljs></div>
+        <div class="content" v-html="article.body" v-highlightjs></div>
     </div>
 </template>
 <script>
