@@ -30,12 +30,6 @@
       lArticleItem,
       lAuthorBox
     },
-    // computed: {
-    //   articleList() { //时间反序
-    //     var list = JSON.parse(JSON.stringify(this.articles))
-    //     return list.sort((a, b) => Date.parse(b.created) - Date.parse(a.created))
-    //   },
-    // },
     data() {
       return {
         articles: [],
