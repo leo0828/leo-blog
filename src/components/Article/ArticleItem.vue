@@ -6,7 +6,7 @@
             </h2>
         </div>
         <div class="date">
-            {{$tool.fromNow(article.created)}}
+            {{$dateTool.fromNow(article.created)}}
         </div>
     </div>
 </template>

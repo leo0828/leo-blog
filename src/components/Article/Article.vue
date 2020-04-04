@@ -2,7 +2,7 @@
     <div class="l-article">
         <div class="header">
             <h1 class="title">{{article.title}}</h1>
-            <div class="date">{{$tool.fromNow(article.created)}}</div>
+            <div class="date">{{$dateTool.getDateStr(article.created)}}</div>
         </div>
         <div class="content" v-html="article.body" v-highlightjs></div>
     </div>
