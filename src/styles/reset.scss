@@ -1,0 +1,14 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color:transparent
+}
+ul,li{
+    list-style: none;
+}
+.el-button{
+    border-width:0.5px;
+}
