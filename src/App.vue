@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <el-backtop></el-backtop>
     <transition mode="out-in" enter-active-class="fadeIn" leave-active-class="fadeOut">
       <router-view class="animated faster container" style="flex:1;" />
     </transition>
@@ -33,7 +34,7 @@
     flex-direction: column;
     justify-content: space-between;
     color: #2c3e50;
-    min-height: 100%;
+    min-height: 100vh;
 
     footer {
       box-sizing: initial;

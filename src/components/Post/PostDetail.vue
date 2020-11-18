@@ -52,7 +52,7 @@ export default {
 
   .content {
     line-height: 1.8em;
-    color: $main-text-color;
+    color: $text-color;
 
     code {
       letter-spacing: initial;
@@ -80,10 +80,6 @@ export default {
     p,
     .image {
       margin: 1em 0;
-    }
-
-    .text {
-      text-indent: 2em;
     }
   }
 

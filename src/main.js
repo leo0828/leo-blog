@@ -3,13 +3,13 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 //butter配置文件
-import '@/plugins/butter'
+import '@/lib/butter'
 //dayjs配置文件
-import '@/plugins/dayjs'
+import '@/lib/dayjs'
 //element-ui配置文件
-import '@/plugins/element-ui'
+import '@/lib/element-ui'
 //highlightjs配置文件
-import '@/plugins/highlightjs'
+import '@/lib/highlightjs'
 //全局工具文件
 import  '@/utils/tool'
 

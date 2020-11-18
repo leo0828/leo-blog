@@ -1,16 +1,16 @@
-$grey:#999;
-$deep-grey:#666;
+$gray-1:#666666;
+$gray-2:#727882;
 $blue:#409eff;
 $black:#2c3e50;
 
-$main-text-color:$deep-grey;
-$text-color:$grey;
+$header-color:$gray-1;
+$text-color:$gray-2;
 $link-color:$black;
 $link-active-color:$blue;
 
 html,
 body {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
 }
 
@@ -64,6 +64,6 @@ h6 {
     color: $link-active-color !important;
 }
 
-.loading-style {
-    text-align: center;
+.el-message {
+    min-width: 90vw !important;
 }

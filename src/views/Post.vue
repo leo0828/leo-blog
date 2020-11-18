@@ -8,7 +8,10 @@
       enter-leave-class="animated fadeOut faster"
     >
       <div>
-        <el-link icon="el-icon-arrow-left" href="#/">首页</el-link>
+        <el-link
+          icon="el-icon-arrow-left"
+          href="#/"
+        >首页</el-link>
         <post-detail
           :title="post.title"
           :created="post.created"
@@ -42,6 +45,7 @@ export default {
   },
   props: {
     slug: {
+      type: String,
       default: "",
     },
   },
@@ -51,6 +55,7 @@ export default {
   data() {
     return {
       loading: false,
+      error: false,
       post: {},
       nextPost: {},
       prevPost: {},
@@ -83,9 +88,11 @@ export default {
         this.post = data.data;
         this.prevPost = data.meta.previous_post;
         this.nextPost = data.meta.next_post;
+        this.error = false;
       } catch (error) {
         console.error(error);
-        this.$message.error("获取文章信息失败");
+        this.$message.error("获取文章内容失败");
+        this.error = true;
       } finally {
         this.loading = false;
       }
