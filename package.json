@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "deploy": "bash deploy"
+    "deploy": "bash deploy.sh"
   },
   "dependencies": {
     "buttercms": "^1.2.3",
