@@ -3,33 +3,38 @@
     v-loading.fullscreen.lock="loading"
     class="post-page"
   >
-    <transition
-      enter-active-class="animated fadeIn faster"
-      enter-leave-class="animated fadeOut faster"
+    <el-link
+      class="home-link"
+      icon="el-icon-arrow-left"
+      href="#/"
+    >首页</el-link>
+    <div
+      v-if="error"
+      class="post-content"
     >
-      <div>
+      <h3 style="margin-bottom:100px;">加载出错了哦...</h3>
+    </div>
+    <div
+      class="post-content"
+      v-else
+    >
+      <post-detail
+        :title="post.title"
+        :created="post.created"
+        :content="post.body"
+      ></post-detail>
+      <div class="pagination">
         <el-link
+          v-if="prevPost"
+          @click="prev"
           icon="el-icon-arrow-left"
-          href="#/"
-        >首页</el-link>
-        <post-detail
-          :title="post.title"
-          :created="post.created"
-          :content="post.body"
-        ></post-detail>
-        <div class="pagination">
-          <el-link
-            v-if="prevPost"
-            @click="prev"
-            icon="el-icon-arrow-left"
-          >上一篇</el-link>
-          <el-link
-            @click="next"
-            v-if="nextPost"
-          >下一篇<i class="el-icon-arrow-right el-icon--right"></i> </el-link>
-        </div>
+        >上一篇</el-link>
+        <el-link
+          @click="next"
+          v-if="nextPost"
+        >下一篇<i class="el-icon-arrow-right el-icon--right"></i> </el-link>
       </div>
-    </transition>
+    </div>
   </section>
 </template>
 <script>
@@ -92,6 +97,7 @@ export default {
       } catch (error) {
         console.error(error);
         this.$message.error("获取文章内容失败");
+        this.post = {};
         this.error = true;
       } finally {
         this.loading = false;
@@ -103,12 +109,17 @@ export default {
 
 <style lang="scss">
 .post-page {
-  min-height: 100vh;
+  min-height: 100%;
+
+  .post-content {
+    padding: 30px 0;
+  }
 
   .pagination {
     display: flex;
     padding-top: 30px;
     justify-content: center;
+    border-top: 0.5px solid #e6e6e6;
   }
 
   //highlight.js reset style
