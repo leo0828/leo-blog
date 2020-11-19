@@ -38,7 +38,7 @@ export default {
 <style lang="scss">
 .post-detail {
   .header {
-    padding-bottom: 15px;
+    padding: 15px 0;
 
     .date {
       color: $text-color;

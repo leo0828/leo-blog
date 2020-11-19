@@ -1,45 +1,42 @@
 <template>
-  <section
-    v-loading.fullscreen.lock="loading"
-    class="post-page"
-  >
-    <el-link
-      class="home-link"
-      icon="el-icon-arrow-left"
-      href="#/"
-    >首页</el-link>
-    <div
-      v-if="error"
-      class="post-content"
-    >
-      <h3 style="margin-bottom:100px;">加载出错了哦...</h3>
+  <div class="post-page">
+    <div class="header-actions">
+      <el-link
+        class="home-link"
+        icon="el-icon-arrow-left"
+        href="#/"
+      >首页</el-link>
     </div>
     <div
       class="post-content"
-      v-else
+      v-loading="loading"
     >
-      <post-detail
-        :title="post.title"
-        :created="post.created"
-        :content="post.body"
-      ></post-detail>
-      <div class="pagination">
-        <el-link
-          v-if="prevPost"
-          @click="prev"
-          icon="el-icon-arrow-left"
-        >上一篇</el-link>
-        <el-link
-          @click="next"
-          v-if="nextPost"
-        >下一篇<i class="el-icon-arrow-right el-icon--right"></i> </el-link>
+      <error-box v-if="error"></error-box>
+      <div v-else>
+        <post-detail
+          :title="post.title"
+          :created="post.created"
+          :content="post.body"
+        ></post-detail>
+        <div class="footer-actions">
+          <el-link
+            v-if="prevPost"
+            @click="prev"
+            icon="el-icon-arrow-left"
+          >上一篇</el-link>
+          <el-link
+            @click="next"
+            v-if="nextPost"
+          >下一篇<i class="el-icon-arrow-right el-icon--right"></i> </el-link>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 </template>
 <script>
 import { getPost } from "@/api/service";
 import PostDetail from "@/components/Post/PostDetail";
+import ErrorBox from "@/components/ErrorBox";
 
 export default {
   name: "Post",
@@ -56,6 +53,7 @@ export default {
   },
   components: {
     PostDetail,
+    ErrorBox,
   },
   data() {
     return {
@@ -110,25 +108,33 @@ export default {
 <style lang="scss">
 .post-page {
   min-height: 100%;
+  display: flex;
+  flex-direction: column;
 
-  .post-content {
-    padding: 30px 0;
+  .header-actions {
+    margin-bottom: 15px;
   }
 
-  .pagination {
+  .post-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .footer-actions {
     display: flex;
     padding-top: 30px;
     justify-content: center;
     border-top: 0.5px solid #e6e6e6;
+    .el-link + .el-link {
+      margin-left: 30px;
+    }
   }
 
   //highlight.js reset style
   .hljs {
     font-size: 16px;
-  }
-
-  .el-link + .el-link {
-    margin-left: 30px;
   }
 }
 </style>

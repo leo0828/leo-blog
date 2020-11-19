@@ -1,8 +1,8 @@
 <template>
-  <section class="error-page">
+  <div class="error-page">
     <h3 style="margin-bottom:100px;">404，页面开小差了...</h3>
     <el-link href="#/">返回主页</el-link>
-  </section>
+  </div>
 </template>
 
 <script>
