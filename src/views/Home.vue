@@ -66,8 +66,8 @@ export default {
       } catch (error) {
         console.error(error);
         this.$message.error("获取文章列表失败");
-        this.error = true;
         this.posts = [];
+        this.error = true;
       } finally {
         this.loading = false;
       }

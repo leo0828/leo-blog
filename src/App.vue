@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <el-backtop><i class="el-icon-top"></i></el-backtop>
+    <el-backtop ref="backtop"><i class="el-icon-top"></i></el-backtop>
     <el-container direction="vertical">
       <el-main>
         <transition
@@ -41,6 +41,10 @@ export default {
 @import url("./styles/animate.min.css");
 @import url("./assets/icon/iconfont.css");
 
+.el-message {
+  min-width: 300px !important;
+}
+
 #app {
   // font-family: 'Avenir', Helvetica, Arial, sans-serif;
   font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console",
@@ -49,10 +53,11 @@ export default {
     monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-weight: 300;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  color: #2c3e50;
+  color: $black;
   min-height: 100vh;
 
   .link {
@@ -65,31 +70,31 @@ export default {
     color: $link-active-color !important;
   }
 
-  .el-message {
-    min-width: 300px !important;
+  .el-main {
+    min-height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
   }
 
   .container {
-    width: 700px;
-    margin: 0 auto;
-    padding: 30px 0;
     flex: 1;
-    min-height: calc(100vh - 100px);
+    width: 768px;
+    margin: auto;
   }
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 768px) {
     .container {
       width: 100%;
-      padding: 15px;
     }
   }
 
   .footer {
+    box-sizing: content-box;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    padding: 15px;
+    padding: 20px;
     font-size: 14px;
     color: $text-color;
 

@@ -25,3 +25,4 @@ Vue.use(Main)
 Vue.use(infiniteScroll)
 Vue.prototype.$message = Message;
 Vue.prototype.$loading = Loading.service;
+Vue.prototype.$backtop = Backtop;

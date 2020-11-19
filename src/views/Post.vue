@@ -12,23 +12,24 @@
       v-loading="loading"
     >
       <error-box v-if="error"></error-box>
-      <div v-else>
-        <post-detail
-          :title="post.title"
-          :created="post.created"
-          :content="post.body"
-        ></post-detail>
-        <div class="footer-actions">
-          <el-link
-            v-if="prevPost"
-            @click="prev"
-            icon="el-icon-arrow-left"
-          >上一篇</el-link>
-          <el-link
-            @click="next"
-            v-if="nextPost"
-          >下一篇<i class="el-icon-arrow-right el-icon--right"></i> </el-link>
-        </div>
+      <post-detail
+        :title="post.title"
+        :created="post.created"
+        :content="post.body"
+      ></post-detail>
+      <div
+        v-if="!error"
+        class="footer-actions"
+      >
+        <el-link
+          v-if="prevPost"
+          @click="toPrev"
+          icon="el-icon-arrow-left"
+        >上一篇</el-link>
+        <el-link
+          @click="toNext"
+          v-if="nextPost"
+        >下一篇<i class="el-icon-arrow-right el-icon--right"></i> </el-link>
       </div>
     </div>
   </div>
@@ -40,10 +41,13 @@ import ErrorBox from "@/components/ErrorBox";
 
 export default {
   name: "Post",
-  watch: {
-    $route(to, from) {
-      this.getData(this.slug);
-    },
+  async beforeRouteUpdate(to, from, next) {
+    await this.getData(to.params.slug);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+    next();
   },
   props: {
     slug: {
@@ -68,7 +72,7 @@ export default {
     this.getData(this.slug);
   },
   methods: {
-    prev() {
+    toPrev() {
       this.$router.push({
         name: "post",
         params: {
@@ -76,7 +80,7 @@ export default {
         },
       });
     },
-    next() {
+    toNext() {
       this.$router.push({
         name: "post",
         params: {
